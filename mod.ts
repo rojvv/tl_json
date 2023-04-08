@@ -12,8 +12,6 @@ class Parser {
   }
 
   parse() {
-    const { lines } = this;
-
     for (let line of this.lines) {
       line = line.replace(";", "").trim();
 
@@ -53,7 +51,7 @@ class Parser {
     const [predicate, idAsString] = predicateWithId.split("#");
     const id = parseInt(idAsString, 16);
     if (isNaN(id)) {
-      return
+      return;
     }
 
     const isVector = predicate === "vector";
@@ -90,7 +88,7 @@ class Parser {
     const [func, idAsString] = predicateWithId.split("#");
     const id = parseInt(idAsString, 16);
     if (isNaN(id)) {
-      return
+      return;
     }
 
     const params = paramsAsArray
