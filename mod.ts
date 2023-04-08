@@ -39,15 +39,22 @@ class Parser {
   }
 
   parseConstructor(line: string) {
-    const splitedLine = line.split("=");
+    const [left, right] = line.split("=");
 
-    const body = splitedLine[0].trim();
-    const type = splitedLine[1].trim();
+    if (!left || !right) {
+      return;
+    }
+
+    const body = left.trim();
+    const type = right.trim();
 
     const [predicateWithId, ...paramsAsArray] = body.split(" ");
 
     const [predicate, idAsString] = predicateWithId.split("#");
     const id = parseInt(idAsString, 16);
+    if (isNaN(id)) {
+      return
+    }
 
     const isVector = predicate === "vector";
 
@@ -69,15 +76,22 @@ class Parser {
   }
 
   parseFunction(line: string) {
-    const splitedLine = line.split("=");
+    const [left, right] = line.split("=");
 
-    const body = splitedLine[0].trim();
-    const type = splitedLine[1].trim();
+    if (!left || !right) {
+      return;
+    }
+
+    const body = left.trim();
+    const type = right.trim();
 
     const [predicateWithId, ...paramsAsArray] = body.split(" ");
 
     const [func, idAsString] = predicateWithId.split("#");
     const id = parseInt(idAsString, 16);
+    if (isNaN(id)) {
+      return
+    }
 
     const params = paramsAsArray
       .filter((param) => {
