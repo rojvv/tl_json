@@ -27,7 +27,7 @@ class Parser {
     if (line == "---functions---") {
       this.mode = "functions";
       return;
-    } else if (line == "---types--") {
+    } else if (line == "---types---") {
       this.mode = "constructors";
       return;
     }
